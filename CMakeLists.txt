@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Assignment)
+project(mussp)
 
 unset(CMAKE_CXX_FLAGS CACHE)
 unset(CMAKE_CXX_FLAGS_RELEASE CACHE)
@@ -24,7 +24,33 @@ elseif (MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}  /MDd /Od /Ob0" CACHE STRING COMPILE_FLAGS FORCE)
 endif()
 
-add_subdirectory(SSP)
-add_subdirectory(muSSP)
-add_subdirectory(FollowMe)
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
 
+set(MUSSP_SOURCES
+  muSSP/Graph.cpp
+  muSSP/Node.cpp
+  muSSP/Sink.cpp
+  muSSP/mussp.cpp
+)
+
+set(MUSSP_HEADERS
+  muSSP/Graph.h
+  muSSP/Node.h
+  muSSP/Sink.h
+  muSSP/mussp.h
+)
+
+ament_auto_add_library(mussp SHARED
+  ${MUSSP_SOURCES}
+  ${MUSSP_HEADERS}
+)
+
+ament_export_include_directories(include)
+
+install(
+  FILES ${MUSSP_HEADERS}
+  DESTINATION include/mussp
+)
+
+ament_auto_package()
