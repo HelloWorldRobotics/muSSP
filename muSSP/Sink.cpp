@@ -40,6 +40,7 @@ void Sink::sink_build_precursormap(std::vector<double> &ancestor_ssd, std::vecto
 //            //sink_precursors.insert(std::make_pair(sink_precursor_weights[parent_node_id[parent_node_id[i]]], parent_node_id[parent_node_id[i]]));
 //        }
 //    }
+    (void)parent_node_id;
 
     for(int i=2; i<n; i+=2){
         if(sink_precursor_weights[i] <= ancestor_ssd[ancestor_node_id[i]])
@@ -59,6 +60,9 @@ void Sink::sink_update_all_half(std::vector<double> distance2src, int sink_id, i
 }
 // this is re-write in Graph class, so not used any more here
 void Sink::sink_update_subgraph(std::vector<int> update_node_id, std::vector<double> distance2src, int n, int sink_id){
+
+    (void)n;
+
     sink_weight_shift = sink_weight_shift - distance2src[sink_id];
     std::vector<int>::iterator it;
     for(it = update_node_id.begin(); it != update_node_id.end(); it++){
