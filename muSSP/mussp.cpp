@@ -200,6 +200,8 @@ void convert_flow_to_assignment(
   std::unordered_map<int, int> * direct_assignment,
   std::unordered_map<int, int> * reverse_assignment)
 {
+  (void)n_cols;
+
   std::vector<bool> edge_visited_flag(resG->num_edges_);
 
   // Helper function to check if the edge is a bridge (i.e., h_i -> o_j)
